@@ -8,6 +8,7 @@ public class ProjectShopApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ProjectShopApplication.class, args);
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
     }
 
 }
