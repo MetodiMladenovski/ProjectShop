@@ -2,13 +2,17 @@ package com.example.projectshop;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
 public class ProjectShopApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ProjectShopApplication.class, args);
-        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        for(int i=0;i<10;++i){
+            System.out.println(i);
+        }
     }
 
 }
