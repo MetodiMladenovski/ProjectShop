@@ -12,6 +12,7 @@ public class ProjectShopApplication {
         SpringApplication.run(ProjectShopApplication.class, args);
         for(int i=0;i<10;++i){
             System.out.println(i);
+            System.out.println(" nov red ");
         }
     }
 
