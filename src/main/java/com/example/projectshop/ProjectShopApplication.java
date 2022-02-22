@@ -11,6 +11,7 @@ public class ProjectShopApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ProjectShopApplication.class, args);
+
     }
     @Bean
     public PasswordEncoder passwordEncoder(){

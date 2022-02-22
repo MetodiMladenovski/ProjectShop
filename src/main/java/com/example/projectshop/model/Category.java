@@ -12,6 +12,7 @@ public class Category {
         this.name = name;
         this.description = description;
     }
+    public void Test(){}
 
     public long getId() {
         return id;
