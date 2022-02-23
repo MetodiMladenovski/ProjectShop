@@ -16,6 +16,9 @@ public class User {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<ShoppingCart> userCarts;
 
+    @Enumerated(value = EnumType.STRING)
+    private Role role;
+
     public User() {
     }
 
