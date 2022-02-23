@@ -7,7 +7,7 @@ public class Device {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long serialNumberId;
+    private Long serialNumberId;
 
     private String name;
 
@@ -83,11 +83,11 @@ public class Device {
         this.stock = stock;
     }
 
-    public long getSerialNumberId() {
+    public Long getSerialNumberId() {
         return serialNumberId;
     }
 
-    public void setSerialNumberId(long serialNumberId) {
+    public void setSerialNumberId(Long serialNumberId) {
         this.serialNumberId = serialNumberId;
     }
 }
