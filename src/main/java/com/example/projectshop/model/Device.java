@@ -11,7 +11,7 @@ public class Device {
 
     private String name;
 
-    private double price;
+    private Double price;
 
     private String description;
 
@@ -21,12 +21,12 @@ public class Device {
     @ManyToOne
     private Manufacturer manufacturer;
 
-    private int stock;
+    private Integer stock;
 
     public Device() {
     }
 
-    public Device(String name, double price, String description, Category category, Manufacturer manufacturer, int stock) {
+    public Device(String name, Double price, String description, Category category, Manufacturer manufacturer, Integer stock) {
         this.name = name;
         this.price = price;
         this.description = description;
@@ -43,11 +43,11 @@ public class Device {
         this.name = name;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -75,11 +75,11 @@ public class Device {
         this.manufacturer = manufacturer;
     }
 
-    public int getStock() {
+    public Integer getStock() {
         return stock;
     }
 
-    public void setStock(int stock) {
+    public void setStock(Integer stock) {
         this.stock = stock;
     }
 
