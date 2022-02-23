@@ -16,5 +16,4 @@ public class ProjectShopApplication {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
 }
