@@ -1,15 +1,22 @@
 package com.example.projectshop.model;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class ShoppingCart {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private LocalDateTime dateCreated;
+
+    @ManyToOne
     private User user;
 
+    @ManyToMany
     private List<Device> deviceList;
 
     public ShoppingCart() {

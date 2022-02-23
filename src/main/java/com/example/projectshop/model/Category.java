@@ -1,6 +1,16 @@
 package com.example.projectshop.model;
 
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Category {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
     private String description;
@@ -12,8 +22,6 @@ public class Category {
         this.name = name;
         this.description = description;
     }
-    public void Test(){}
-
     public long getId() {
         return id;
     }

@@ -1,8 +1,12 @@
 package com.example.projectshop.model;
 
+import javax.persistence.*;
 
+@Entity
 public class Device {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long serialNumberId;
 
     private String name;
@@ -11,8 +15,10 @@ public class Device {
 
     private String description;
 
+    @ManyToOne
     private Category category;
 
+    @ManyToOne
     private Manufacturer manufacturer;
 
     private int stock;

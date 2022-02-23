@@ -1,13 +1,19 @@
 package com.example.projectshop.model;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table(name = "shop_users")
 public class User {
 
+    @Id
     private String username;
     private String password;
     private String email;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private List<ShoppingCart> userCarts;
 
     public User() {
