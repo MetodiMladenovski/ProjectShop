@@ -1,6 +1,7 @@
 package com.example.projectshop.service;
 
-import org.springframework.security.core.userdetails.User;
+
+import com.example.projectshop.model.User;
 
 public interface AuthService {
     User login(String username, String password);

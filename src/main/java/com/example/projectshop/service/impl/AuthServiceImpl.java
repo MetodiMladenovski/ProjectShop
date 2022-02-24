@@ -1,10 +1,10 @@
 package com.example.projectshop.service.impl;
 
+import com.example.projectshop.model.User;
 import com.example.projectshop.model.exceptions.InvalidArgumentsException;
 import com.example.projectshop.model.exceptions.InvalidUserCredentialsException;
 import com.example.projectshop.repository.UserRepository;
 import com.example.projectshop.service.AuthService;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -21,9 +21,8 @@ public class AuthServiceImpl implements AuthService {
         if (username==null || username.isEmpty() || password==null || password.isEmpty()) {
             throw new InvalidArgumentsException();
         }
-     //   return userRepository.findByUsernameAndPassword(username,
-     //           password).orElseThrow(InvalidUserCredentialsException::new);
-        return null;
+        return userRepository.findByUsernameAndPassword(username,
+                password).orElseThrow(InvalidUserCredentialsException::new);
     }
 }
 

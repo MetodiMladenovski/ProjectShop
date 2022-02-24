@@ -22,8 +22,8 @@ public class ShoppingCart {
     public ShoppingCart() {
     }
 
-    public ShoppingCart(LocalDateTime dateCreated, User user) {
-        this.dateCreated = dateCreated;
+    public ShoppingCart(User user) {
+        this.dateCreated = LocalDateTime.now();
         this.user = user;
         this.deviceList = new ArrayList<>();
     }
