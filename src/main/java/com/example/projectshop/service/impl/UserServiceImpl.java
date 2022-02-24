@@ -1,16 +1,18 @@
 package com.example.projectshop.service.impl;
 
 import com.example.projectshop.model.Role;
+import com.example.projectshop.model.User;
 import com.example.projectshop.model.exceptions.InvalidUsernameOrPasswordException;
 import com.example.projectshop.model.exceptions.PasswordsDoNotMatchException;
 import com.example.projectshop.model.exceptions.UsernameAlreadyExistsException;
 import com.example.projectshop.repository.UserRepository;
 import com.example.projectshop.service.UserService;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
@@ -29,14 +31,12 @@ public class UserServiceImpl implements UserService {
             throw new PasswordsDoNotMatchException();
         if(this.userRepository.findByUsername(username).isPresent())
             throw new UsernameAlreadyExistsException(username);
-        //User user = new User(username, passwordEncoder.encode(password), email, role);
-        //return userRepository.save(user);
-        return null;
+        User user = new User(username, passwordEncoder.encode(password), email, role);
+        return userRepository.save(user);
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-     //   return userRepository.findByUsername(username).orElseThrow(()->new UsernameNotFoundException(username));
-        return null;
+        return userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException(username));
     }
 }
