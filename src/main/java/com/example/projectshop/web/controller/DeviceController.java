@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping
+@RequestMapping("/devices")
 public class DeviceController {
     private final DeviceService deviceService;
     private final CategoryService categoryService;
@@ -33,26 +33,40 @@ public class DeviceController {
         }
         List<Device> devices = this.deviceService.findAll();
         model.addAttribute("devices", devices);
-        model.addAttribute("bodyContent", devices);
                          //TODO: IMPL LATER
-        return " ";
+        return "devices";
     }
 
-    @PostMapping("/{serialNumberId}/edit")
+    @PostMapping("/{serialNumberId}/delete")
     public String deleteDevice(@PathVariable Long serialNumberId){
         this.deviceService.deleteById(serialNumberId);
-        return " ";
+        return "redirect:/devices";
     }
 
-    @GetMapping("/add-form")
+    @GetMapping("/add-device")
     //@PreAuthorize("hasRole('ROLE_ADMIN')")
     public String addDevicePage(Model model){
         List<Manufacturer> manufacturers = this.manufacturerService.findAll();
         List<Category> categories = this.categoryService.listCategories();
         model.addAttribute("manufacturers", manufacturers);
         model.addAttribute("categories", categories);
-        model.addAttribute("bodyContent", "add-device");
-        return " ";
+        // model.addAttribute("bodyContent", "add-device");
+        return "add-device";
+    }
+
+    @GetMapping("/edit-form/{id}")
+    public String editProductPage(@PathVariable Long id, Model model){
+        if(this.deviceService.findById(id).isPresent()){
+            Device device = this.deviceService.findById(id).get();
+            List<Category> categories = this.categoryService.listCategories();
+            List<Manufacturer> manufacturers = this.manufacturerService.findAll();
+            model.addAttribute("categories", categories);
+            model.addAttribute("manufacturers", manufacturers);
+            model.addAttribute("device", device);
+            model.addAttribute("bodyContent", "add-product");
+            return "add-device";
+        }
+        return "redirect:/devices?error=ProductNotFound";
     }
 
     @PostMapping("/add")
@@ -70,6 +84,6 @@ public class DeviceController {
         } else {
             this.deviceService.save(name,description, price, stock,category,manufacturer, image);
         }
-        return " ";
+        return "redirect:/devices";
     }
 }

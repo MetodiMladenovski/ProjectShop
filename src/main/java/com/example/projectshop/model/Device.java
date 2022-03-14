@@ -15,6 +15,8 @@ public class Device {
 
     private Double price;
 
+    private Integer stock;
+
     private String description;
 
     @ManyToOne
@@ -22,9 +24,6 @@ public class Device {
 
     @ManyToOne
     private Manufacturer manufacturer;
-
-    private Integer stock;
-
 
     public Device() {
     }

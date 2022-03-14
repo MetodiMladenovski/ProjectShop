@@ -1,7 +1,6 @@
 package com.example.projectshop.web.controller;
 
 import com.example.projectshop.service.DeviceService;
-import com.example.projectshop.service.impl.DeviceServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +19,6 @@ public class HomeController {
     public String getHomePage(Model model) {
         model.addAttribute("bodyContent", "home");
         model.addAttribute("devices", deviceService.findAll());
-        return "glasses";
+        return "devices";
     }
 }
