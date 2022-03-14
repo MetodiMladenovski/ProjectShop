@@ -11,6 +11,8 @@ public class Device {
 
     private String name;
 
+    private String image;
+
     private Double price;
 
     private String description;
@@ -23,17 +25,20 @@ public class Device {
 
     private Integer stock;
 
+
     public Device() {
     }
 
-    public Device(String name, Double price, String description, Category category, Manufacturer manufacturer, Integer stock) {
+    public Device(String name, Double price, String description, Category category, Manufacturer manufacturer, Integer stock, String image) {
         this.name = name;
         this.price = price;
         this.description = description;
         this.category = category;
         this.manufacturer = manufacturer;
         this.stock = stock;
+        this.image = image;
     }
+
 
     public String getName() {
         return name;
@@ -89,5 +94,12 @@ public class Device {
 
     public void setSerialNumberId(Long serialNumberId) {
         this.serialNumberId = serialNumberId;
+    }
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

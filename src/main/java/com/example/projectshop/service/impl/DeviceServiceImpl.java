@@ -46,18 +46,18 @@ public class DeviceServiceImpl implements DeviceService {
     }
 
     @Override
-    public Optional<Device> save(String name, String description, Double price, Integer stock, Long categoryId, Long manufacturerId) {
+    public Optional<Device> save(String name, String description, Double price, Integer stock, Long categoryId, Long manufacturerId, String image) {
         Category category = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new CategoryNotFoundException(categoryId));
         Manufacturer manufacturer = manufacturerRepository.findById(manufacturerId)
                 .orElseThrow(() -> new ManufacturerNotFoundException(manufacturerId));
 
-        Device device = new Device(name, price, description, category, manufacturer, stock);
+        Device device = new Device(name, price, description, category, manufacturer, stock, image);
         return Optional.of(deviceRepository.save(device));
     }
 
     @Override
-    public Optional<Device> edit(Long DeviceId, String name, String description, Double price, Integer stock, Long categoryId, Long manufacturerId) {
+    public Optional<Device> edit(Long DeviceId, String name, String description, Double price, Integer stock, Long categoryId, Long manufacturerId, String image) {
         Category category = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new CategoryNotFoundException(categoryId));
         Manufacturer manufacturer = manufacturerRepository.findById(manufacturerId)
@@ -71,6 +71,7 @@ public class DeviceServiceImpl implements DeviceService {
         device.setName(name);
         device.setPrice(price);
         device.setStock(stock);
+        device.setImage(image);
 
         return Optional.of(deviceRepository.save(device));
     }

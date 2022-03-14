@@ -13,9 +13,9 @@ public interface DeviceService {
 
     Optional<Device> findByName(String name);
 
-    Optional<Device> save(String name,String description, Double price,Integer stock, Long categoryId, Long manufacturerId);
+    Optional<Device> save(String name,String description, Double price,Integer stock, Long categoryId, Long manufacturerId, String image);
 
-    Optional<Device> edit(Long DeviceId, String name,String description, Double price,Integer stock, Long categoryId, Long manufacturerId);
+    Optional<Device> edit(Long DeviceId, String name,String description, Double price,Integer stock, Long categoryId, Long manufacturerId, String image);
 
     void deleteById(Long id);
 
