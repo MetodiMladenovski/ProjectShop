@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
    <head>
       <!-- basic -->
@@ -29,27 +28,53 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
    </head>
-   <!-- body -->
+
    <body class="main-layout position_head">
-      <!-- loader  -->
+
       <div class="loader_bg">
          <div class="loader"><img src="images/loading.gif" alt="#" /></div>
       </div>
-      <!-- end loader -->
-      <!-- header -->
+
       <header th:replace="fragments/header"/>
-      <!-- end header inner -->
-      <!-- end header -->
-      <!-- Our  Glasses section -->
+
+      <!--<div style="float: left;">
+         REKLAMA
+      </div> -->
+      <div class="container widthContainer">
       <div class="glasses">
          <div class="container">
             <div class="row">
                <div class="col-md-10 offset-md-1">
                   <div class="titlepage">
-                     <h2>Our Glasses</h2>
-                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labor
-                        e et dolore magna aliqua. Ut enim ad minim veniam, qui
-                     </p>
+                     <h2>Our Devices</h2>
+                     <p>Find all the best and newest trending devices on our devices page.</p>
+                     <hr>
+                     <a th:href="@{'/devices/add-device'}" type="button" class="btn btn-success">
+                        Add Device
+                     </a>
+                     <hr>
+                     <form th:action="@{'/devices'}"
+                           th:method="GET">
+                        <div class="form-group">
+                           <label>Category</label>
+                           <select id="category" name="category" class="form-control">
+                              <option th:value="null" selected>None selected</option>
+                              <option
+                                      th:each="category : ${categories}"
+                                      th:text="${category.getName()}"
+                                      th:value="${category.getId()}">
+                              </option>
+                           </select>
+                        </div>
+                        <div class="form-group">
+                           <label for="priceFilter">Find devices with price SMALLER than the one you entered</label>
+                           <input name="priceFilter" id="priceFilter" placeholder="Enter price" type="number">
+                        </div>
+                        <button type="submit"
+                                class="btn btn-primary" style="float: bottom">
+                          Filter Devices
+                        </button>
+                     </form>
                   </div>
                </div>
             </div>
@@ -61,16 +86,43 @@
                      <figure><img th:src="${device.getImage()}" style="height: 260px; width: 380px" alt="#"/></figure>
                      <h3 th:text="${device.getPrice()}"></h3>
                      <p th:text="${device.getName()}"></p>
+                     <hr>
+                    <!--sec:authorize="hasRole('ROLE_ADMIN')"-->
+                     <div>
+                        <form th:action="@{'/devices/delete/{id}' (id=${device.getSerialNumberId()})}"
+                              th:method="DELETE" style="float: left; margin: 3px">
+                           <button type="submit"
+                                   class="btn btn-sm btn-danger">
+                              <i class="fa fa-trash">Delete</i>
+                           </button>
+                        </form>
+                     </th:block>
+                      <!--sec:authorize="hasRole('ROLE_ADMIN')"-->
+                        <a th:href="@{'/devices/edit-form/{id}' (id=${device.getSerialNumberId()})}"
+                           class="btn btn-sm btn-info" style="float: right; margin: 3px">
+                           <i class="fa fa-trash">Edit</i>
+                        </a>
+                     </div>
+
+                     <form th:action="@{'/shopping-cart/add-device/{id}' (id=${device.getSerialNumberId()})}"
+                           th:method="POST">
+                           <!-- sec:authorize="isAuthenticated()"-->
+                        <button type="submit"
+                                class="btn btn-sm btn-primary">
+                           <i class="fa fa-trash">Add product to cart</i>
+                        </button>
+                     </form>
+
+
                   </div>
                </div>
             </div>
          </div>
       </div>
-      <!-- end Our  Glasses section -->
-      <!--  footer -->
+      </div>
+
       <footer th:replace="fragments/footer"/>
-      <!-- end footer -->
-      <!-- Javascript files-->
+
       <script src="js/jquery.min.js"></script>
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>

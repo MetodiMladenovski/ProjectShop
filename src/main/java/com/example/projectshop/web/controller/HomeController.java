@@ -19,6 +19,6 @@ public class HomeController {
     public String getHomePage(Model model) {
         model.addAttribute("bodyContent", "home");
         model.addAttribute("devices", deviceService.findAll());
-        return "devices";
+        return "home";
     }
 }

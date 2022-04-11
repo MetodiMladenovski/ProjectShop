@@ -80,4 +80,23 @@ public class DeviceServiceImpl implements DeviceService {
     public void deleteById(Long id) {
         this.deviceRepository.deleteById(id);
     }
+
+    @Override
+    public List<Device> filterByCategory(Long categoryId) {
+        Category category = this.categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new CategoryNotFoundException(categoryId));
+        return this.deviceRepository.findDeviceByCategory(category);
+    }
+
+    @Override
+    public List<Device> filterByPrice(Double price) {
+        return this.deviceRepository.findDeviceByPriceLessThan(price);
+    }
+
+    @Override
+    public List<Device> filterByCategoryAndPrice(Long categoryId, Double price) {
+        Category category = this.categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new CategoryNotFoundException(categoryId));
+        return this.deviceRepository.findDeviceByPriceLessThanAndCategory(price, category);
+    }
 }

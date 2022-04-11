@@ -19,4 +19,10 @@ public interface DeviceService {
 
     void deleteById(Long id);
 
+    List<Device> filterByCategory(Long categoryId);
+
+    List<Device> filterByPrice(Double price);
+
+    List<Device> filterByCategoryAndPrice(Long categoryId, Double price);
+
 }

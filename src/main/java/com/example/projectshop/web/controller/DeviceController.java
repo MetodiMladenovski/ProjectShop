@@ -26,20 +26,37 @@ public class DeviceController {
         this.manufacturerService = manufacturerService;
     }
     @GetMapping
-    public String getDevicePage(@RequestParam(required = false) String error, Model model){
+    public String getDevicePage(@RequestParam(required = false) String error,
+                                @RequestParam(required = false) Long category,
+                                @RequestParam(required = false) Double priceFilter,
+                                Model model){
         if(error != null && !error.isEmpty()){
             model.addAttribute("hasError", true);
             model.addAttribute("error",error);
         }
-        List<Device> devices = this.deviceService.findAll();
+        List<Device> devices;
+        if(category != null && category != 0 && priceFilter != null){
+            devices = this.deviceService.filterByCategoryAndPrice(category, priceFilter);
+        } else if(priceFilter != null){
+            devices = this.deviceService.filterByPrice(priceFilter);
+        }
+        else if (category != null && category != 0) {
+            devices = this.deviceService.filterByCategory(category);
+        }
+        else {
+            devices = this.deviceService.findAll();
+        }
+
+        List<Category> categories = this.categoryService.listCategories();
         model.addAttribute("devices", devices);
-                         //TODO: IMPL LATER
+        model.addAttribute("categories", categories);
+
         return "devices";
     }
 
-    @PostMapping("/{serialNumberId}/delete")
-    public String deleteDevice(@PathVariable Long serialNumberId){
-        this.deviceService.deleteById(serialNumberId);
+    @DeleteMapping("/delete/{id}")
+    public String deleteDevice(@PathVariable Long id){
+        this.deviceService.deleteById(id);
         return "redirect:/devices";
     }
 
@@ -86,4 +103,17 @@ public class DeviceController {
         }
         return "redirect:/devices";
     }
+//
+//    @PostMapping("/get-category-devices")
+//    public String getDevicePage(@RequestParam Long category, @RequestParam(required = false) String error, Model model){
+//        if(error != null && !error.isEmpty()){
+//            model.addAttribute("hasError", true);
+//            model.addAttribute("error",error);
+//        }
+//        List<Device> devices = this.deviceService.filterByCategory(category);
+//        List<Category> categories = this.categoryService.listCategories();
+//        model.addAttribute("devices", devices);
+//        model.addAttribute("categories", categories);
+//        return "devices";
+//    }
 }
