@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
    <head>
       <!-- basic -->
@@ -41,24 +41,27 @@
       <!-- end header inner -->
       <!-- end header -->
       <!-- about section -->
-      <div class="about">
-         <div class="container">
-            <div class="row d_flex">
-               <div class="col-md-5">
-                  <div class="about_img">
-                     <figure><img src="images/about_img.png" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-7">
-                  <div class="titlepage">
-                     <h2>About Our Shop</h2>
-                     <p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-                  </div>
-                  <a class="read_more" href="#">Read More</a>
-               </div>
-            </div>
-         </div>
+      <div class="container" xmlns:th="http://www.thymeleaf.org">
+         <form class="form-signin mt-xl-5" th:method="POST" th:action="@{'/login'}">
+            <h2 class="form-signin-heading">Sign in</h2>
+            <p>
+               <label for="username" class="sr-only">Username</label>
+               <input type="text" id="username" name="username" class="form-control" placeholder="Username" required=""
+                      autofocus="">
+            </p>
+            <p>
+               <label for="password" class="sr-only">Password</label>
+               <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+                      required="">
+            </p>
+
+            <div th:text="${param.error}" class="text-danger"></div>
+
+            <button id="submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+         </form>
+         <a href="/register" class="btn btn-block btn-light">Register here</a>
       </div>
+
       <!-- about section -->
       <!--  footer -->
       <footer th:replace="fragments/footer"/>
