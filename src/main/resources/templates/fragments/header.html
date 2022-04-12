@@ -1,4 +1,4 @@
-<header>
+<header xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
     <!-- header inner -->
     <div class="header">
         <div class="container-fluid">
@@ -7,7 +7,7 @@
                     <div class="full">
                         <div class="center-desk">
                             <div class="logo">
-                                <a href="home.html"><img src="images/logo.png" alt="#" /></a>
+                                <a href="/home"><img src="images/logo.png" alt="#" /></a>
                             </div>
                         </div>
                     </div>
@@ -28,12 +28,23 @@
                                 <li class="nav-item">
                                     <a class="nav-link" th:href="@{'/shoppingCart'}">ShoppingCART</a>
                                 </li>
-                                <li class="nav-item d_none login_btn">
+                                <li class="nav-item d_none login_btn" sec:authorize="!isAuthenticated()">
                                     <a class="nav-link" th:href="@{'/login'}">Login</a>
                                 </li>
-                                <li class="nav-item d_none">
-                                    <a class="nav-link" th:href="@{'/register'}">Register</a>
+                                <li class="nav-item d_none logout_btn" sec:authorize="isAuthenticated()">
+                                    <a class="nav-link" th:href="@{'/logout'}">Logout</a>
                                 </li>
+                                <li class="nav-item d_none" sec:authorize="isAuthenticated()">
+                                    <a class="nav-link" href="#">
+                                        <th:block th:if="${#request.getRemoteUser() != null}"
+                                                  th:text="${#request.getRemoteUser()}"/>
+                                    </a>
+                                </li>
+                                <li class="nav-item d_none" sec:authorize="!isAuthenticated()">
+                                    <a class="nav-link" th:href="@{'/register'}">Register</a>
+                                    </a>
+                                </li>
+
                             </ul>
                         </div>
                     </nav>
