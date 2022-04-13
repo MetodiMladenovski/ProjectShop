@@ -25,8 +25,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/css/**", "/js/**", "/images/**", "/fonts/**").permitAll()
                 .antMatchers("/", "/home", "/register").permitAll()
-                .antMatchers("/resources/static/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
@@ -43,14 +43,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) {
-//        auth.inMemoryAuthentication()
-//                .withUser("kostadin.mishev")
-//                .password(passwordEncoder.encode("km"))
-//                .authorities("ROLE_USER")
-//                .and()
-//                .withUser("admin")
-//                .password(passwordEncoder.encode("admin"))
-//                .authorities("ROLE_ADMIN");
         auth.authenticationProvider(authenticationProvider);
     }
 

@@ -28,61 +28,74 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
    </head>
-   <!-- body -->
-   <body class="main-layout">
-      <!-- loader  -->
-      <div class="container">
-         <h1 th:if="${hasError}" th:text="${error}"></h1>
-      </div>
-      <div class="container">
-         <form class="form-signin mt-xl-5" th:method="POST" th:action="@{'/register'}">
-            <h2 class="form-signin-heading">Register</h2>
-            <p>
-               <label for="username" class="sr-only">Username</label>
-               <input type="text" id="username" name="username" class="form-control" placeholder="Username" required=""
-                      autofocus="">
-            </p>
-            <p>
-               <label for="password" class="sr-only">Password</label>
-               <input type="password" id="password" name="password" class="form-control" placeholder="Password"
-                      required="">
-            </p>
-            <p>
-               <label for="repeatedPassword" class="sr-only">Repeat Password</label>
-               <input type="password" id="repeatedPassword" name="repeatedPassword" class="form-control"
-                      placeholder="Repeat Password" required="">
-            </p>
-            <p>
-               <label for="email" class="sr-only">Email</label>
-               <input type="email" id="email" name="email" class="form-control" placeholder="Email" required="" autofocus="">
-            </p>
-            <p>
-            <div class="form-check form-check-inline">
-               <input class="form-check-input" name="role" type="radio" id="ROLE_ADMIN" value="ROLE_ADMIN">
-               <label class="form-check-label" for="ROLE_ADMIN">ROLE_ADMIN</label>
-            </div>
-            <div class="form-check form-check-inline">
-               <input class="form-check-input" name="role"  type="radio" id="ROLE_USER" value="ROLE_USER">
-               <label class="form-check-label" for="ROLE_USER">ROLE_USER</label>
-            </div>
-            </p>
-            <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-         </form>
-         <a href="/login" class="btn btn-block btn-light">Already have an account? Login here!</a>
-      </div>
+   <body class="main-layout position_head">
+   <!-- loader  -->
+   <div class="loader_bg">
+      <div class="loader"><img src="images/loading.gif" alt="#" /></div>
+   </div>
+   <!-- end loader -->
+   <!-- header -->
+   <header th:replace="fragments/header"/>
+   <!-- end header inner -->
+   <!-- end header -->
+   <!-- about section -->
+   <div class="container">
+      <h1 th:if="${hasError}" th:text="${error}"></h1>
+   </div>
+   <div class="container">
+      <form class="form-signin mt-xl-5" th:method="POST" th:action="@{'/register'}">
+         <h2 class="form-signin-heading">Register</h2>
+         <p>
+            <label for="username" class="sr-only">Username</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="Username" required=""
+                   autofocus="">
+         </p>
+         <br>
+         <p>
+            <label for="password" class="sr-only">Password</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="Password"
+                   required="">
+         </p>
+         <br>
+         <p>
+            <label for="repeatedPassword" class="sr-only">Repeat Password</label>
+            <input type="password" id="repeatedPassword" name="repeatedPassword" class="form-control"
+                   placeholder="Repeat Password" required="">
+         </p>
+         <br>
+         <p>
+            <label for="email" class="sr-only">Email</label>
+            <input type="email" id="email" name="email" class="form-control" placeholder="Email" required="" autofocus="">
+         </p>
+         <br>
+         <p>
+         <div class="form-check form-check-inline">
+            <input class="form-check-input" name="role" type="radio" id="ROLE_ADMIN" value="ROLE_ADMIN">
+            <label class="form-check-label" for="ROLE_ADMIN">ROLE_ADMIN</label>
+         </div>
+         <div class="form-check form-check-inline">
+            <input class="form-check-input" name="role"  type="radio" id="ROLE_USER" value="ROLE_USER">
+            <label class="form-check-label" for="ROLE_USER">ROLE_USER</label>
+         </div>
+         </p>
+         <br>
+         <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+      </form>
+      <br>
+      <a href="/login" class="btn btn-block btn-light">Already have an account? Login here!</a>
+   </div>
+   <div class="row">
+      <br>
+   </div>
 
-      <!-- end contact section -->
-      <!--  footer -->
-      <footer th:replace="fragments/footer"/>
-      <!-- end footer -->
-      <!-- Javascript files-->
-      <script src="js/jquery.min.js"></script>
-      <script src="js/popper.min.js"></script>
-      <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
-      <!-- sidebar -->
-      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
-      <script src="js/custom.js"></script>
+   <footer th:replace="fragments/footer"/>
+   <!-- end footer -->
+   <!-- Javascript files-->
+   <script src="js/jquery.min.js"></script>
+   <script src="js/popper.min.js"></script>
+   <script src="js/bootstrap.bundle.min.js"></script>
+   <script src="resources/static/js/jquery-3.0.0.min.js"></script>
+   <!-- sidebar -->
+   <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+   <script src="js/custom.js"></script>
    </body>
-</html>
-

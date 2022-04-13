@@ -48,19 +48,24 @@
                <input type="text" id="username" name="username" class="form-control" placeholder="Username" required=""
                       autofocus="">
             </p>
+            <br>
             <p>
                <label for="password" class="sr-only">Password</label>
                <input type="password" id="password" name="password" class="form-control" placeholder="Password"
                       required="">
             </p>
+            <hr>
 
             <div th:text="${param.error}" class="text-danger"></div>
-
+            <br>
             <button id="submit" class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+            <br>
          </form>
          <a href="/register" class="btn btn-block btn-light">Register here</a>
       </div>
-
+      <div class="row">
+         <br>
+      </div>
       <!-- about section -->
       <!--  footer -->
       <footer th:replace="fragments/footer"/>
@@ -70,7 +75,7 @@
       <script src="js/jquery.min.js"></script>
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>
-      <script src="js/jquery-3.0.0.min.js"></script>
+      <script src="resources/static/js/jquery-3.0.0.min.js"></script>
       <!-- sidebar -->
       <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="js/custom.js"></script>

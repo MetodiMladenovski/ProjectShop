@@ -34,37 +34,38 @@
       <div class="loader_bg">
          <div class="loader"><img src="images/loading.gif" alt="#" /></div>
       </div>
-      <!-- end loader -->
-      <!-- header -->
+
       <header th:replace="fragments/header"/>
-      <!-- end header inner -->
-      <!-- end header -->
-      <!-- Our shop section -->
-      <div id="about" class="shop">
-         <div class="container-fluid">
-            <div class="row">
-               <div class="col-md-5">
-                  <div  class="shop_img">
-                     <figure><img src="images/shop_img.png" alt="#"/></figure>
-                  </div>
-               </div>
-               <div class="col-md-7 padding_right0">
-                  <div class="max_width">
-                     <div class="titlepage">
-                        <h2>Best Sun Glasses  At Our shop</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-                        <a class="read_more" href="#">Shop Now</a>
+      <br>
+      <h1 style="text-align: center">Welcome to your shopping cart</h1>
+      <h3 style="text-align: center">Total price to pay: </h3>
+      <div class="container widthContainer">
+         <div class="glasses">
+            <div class="container-fluid" >
+               <div class="row">
+                  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-6" th:each="device : ${devices}">
+                     <div class="glasses_box">
+                        <figure><img th:src="${device.getImage()}" style="height: 260px; width: 380px; padding: 10px" alt="#"/></figure>
+                        <h3 th:text="${device.getPrice() + '$'}"></h3>
+                        <p th:text="${device.getName()}"></p>
+                        <hr>
+                        <form th:action="@{'/shopping-cart/remove/{id}' (id=${device.getSerialNumberId()})}"
+                              th:method="DELETE">
+                           <button type="submit"
+                                   class="btn btn-sm btn-danger">
+                              Delete
+                           </button>
+                        </form>
                      </div>
                   </div>
                </div>
             </div>
          </div>
       </div>
-      <!-- end Our shop section -->
-      <!--  footer -->
+
+
       <footer th:replace="fragments/footer"/>
-      <!-- end footer -->
-      <!-- Javascript files-->
+
       <script src="js/jquery.min.js"></script>
       <script src="js/popper.min.js"></script>
       <script src="js/bootstrap.bundle.min.js"></script>

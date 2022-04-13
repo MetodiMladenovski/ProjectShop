@@ -9,4 +9,5 @@ public interface ShoppingCartService {
     List<Device> listAllDevicesInShoppingCart(Long cartId);
     ShoppingCart getActiveShoppingCart(String username);
     ShoppingCart addDeviceToShoppingCart(String username, Long deviceId);
+    void removeDeviceFromShoppingCart(Long deviceId, String username);
 }

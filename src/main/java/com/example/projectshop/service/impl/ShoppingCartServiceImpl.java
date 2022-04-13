@@ -59,4 +59,16 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         shoppingCart.getDeviceList().add(device);
         return shoppingCartRepository.save(shoppingCart);
     }
+
+    @Override
+    public void removeDeviceFromShoppingCart(Long deviceId, String username) {
+        ShoppingCart shoppingCart = this.getActiveShoppingCart(username);
+        List<Device> list;
+        if(shoppingCart.getDeviceList().stream().noneMatch(d -> d.getSerialNumberId().equals(deviceId)))
+            throw new DeviceNotFoundException(deviceId);
+        shoppingCart.getDeviceList().removeIf(d -> d.getSerialNumberId().equals(deviceId));
+        list = shoppingCart.getDeviceList();
+        shoppingCart.setDeviceList(list);
+        shoppingCartRepository.save(shoppingCart);
+    }
 }
