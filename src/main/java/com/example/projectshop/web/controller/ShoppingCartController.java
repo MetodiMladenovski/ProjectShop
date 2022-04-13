@@ -35,6 +35,7 @@ public class ShoppingCartController {
         }
         String username = req.getRemoteUser();
         ShoppingCart shoppingCart = this.shoppingCartService.getActiveShoppingCart(username);
+        model.addAttribute("activeShoppingCart", shoppingCart);
         model.addAttribute("devices", this.shoppingCartService.listAllDevicesInShoppingCart(shoppingCart.getId()));
         return "shopping-cart";
     }

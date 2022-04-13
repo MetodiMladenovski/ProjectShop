@@ -38,7 +38,7 @@
       <header th:replace="fragments/header"/>
       <br>
       <h1 style="text-align: center">Welcome to your shopping cart</h1>
-      <h3 style="text-align: center">Total price to pay: </h3>
+      <h3 style="text-align: center" th:text="'Total price to pay: ' + ${activeShoppingCart.getTotalPrice()} + '$'"></h3>
       <div class="container widthContainer">
          <div class="glasses">
             <div class="container-fluid" >
