@@ -68,10 +68,4 @@ public class ShoppingCart {
     public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
     }
-//    public void incrementTotalPrice(Double totalPrice){
-//        this.totalPrice += totalPrice;
-//    }
-//    public void decrementTotalPrice(Double totalPrice){
-//        this.totalPrice -= totalPrice;
-//    }
 }

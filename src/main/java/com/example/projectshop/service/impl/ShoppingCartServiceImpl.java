@@ -13,6 +13,7 @@ import com.example.projectshop.service.DeviceService;
 import com.example.projectshop.service.ShoppingCartService;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -69,6 +70,13 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         shoppingCart.getDeviceList().removeIf(d -> d.getSerialNumberId().equals(deviceId));
         list = shoppingCart.getDeviceList();
         shoppingCart.setDeviceList(list);
+        shoppingCartRepository.save(shoppingCart);
+    }
+
+    @Override
+    public void clearShoppingCartAfterPayment(String username) {
+        ShoppingCart shoppingCart = this.getActiveShoppingCart(username);
+        shoppingCart.setDeviceList(new ArrayList<>());
         shoppingCartRepository.save(shoppingCart);
     }
 }

@@ -38,7 +38,26 @@
       <header th:replace="fragments/header"/>
       <br>
       <h1 style="text-align: center">Welcome to your shopping cart</h1>
-      <h3 style="text-align: center" th:text="'Total price to pay: ' + ${activeShoppingCart.getTotalPrice()} + '$'"></h3>
+      <h3 style="text-align: center" th:text="'Total price to pay: ' + ${shoppingCart.getTotalPrice()} + '$'"></h3>
+      <div style="text-align: center">
+      <form th:if="${devices.size()>0}" action='/shopping-cart/charge' method='POST' id='checkout-form' style="display: inline-block">
+         <input type='hidden' th:value='${amountInPennies}' name='amount' />
+         <!-- NOTE: data-key/data-amount/data-currency will be rendered by Thymeleaf -->
+         <script
+                 src='https://checkout.stripe.com/checkout.js'
+                 class='stripe-button'
+                 th:attr='data-key=${stripePublicKey},
+            data-amount=${amountInPennies},
+            data-currency=${currency}'
+                 data-name='ProjectShop'
+                 data-description='ProjectShopWP course checkout'
+                 data-image
+                         ='https://www.baeldung.com/wp-content/themes/baeldung/favicon/android-chrome-192x192.png'
+                 data-locale='auto'
+                 data-zip-code='false'>
+         </script>
+      </form>
+      </div>
       <div class="container widthContainer">
          <div class="glasses">
             <div class="container-fluid" >
