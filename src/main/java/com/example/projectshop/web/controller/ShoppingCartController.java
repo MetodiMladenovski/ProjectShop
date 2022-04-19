@@ -36,6 +36,7 @@ public class ShoppingCartController {
 
     @GetMapping
     public String getShoppingCartPage(@RequestParam(required = false) String error,
+                                      @RequestParam(required = false) String orderConfirmation,
                                       HttpServletRequest req,
                                       Model model) {
         if (error != null && !error.isEmpty()) {
@@ -50,6 +51,7 @@ public class ShoppingCartController {
         model.addAttribute("devices", this.shoppingCartService.listAllDevicesInShoppingCart(shoppingCart.getId()));
         model.addAttribute("stripePublicKey", this.stripePublicKey);
         model.addAttribute("currency", ChargeRequest.Currency.USD);
+        model.addAttribute("orderConfirmation", orderConfirmation);
         return "shopping-cart";
     }
 
@@ -75,9 +77,8 @@ public class ShoppingCartController {
         chargeRequest.setDescription("Example charge");
         chargeRequest.setCurrency(ChargeRequest.Currency.USD);
         Charge charge = paymentService.charge(chargeRequest);
-
         this.shoppingCartService.clearShoppingCartAfterPayment(req.getRemoteUser());
-        return "redirect:/shopping-cart";
+        return "redirect:/shopping-cart?orderConfirmation="+charge.getStatus();
     }
 
 }
